@@ -2,8 +2,20 @@ import sublime, sublime_plugin
 
 try:
 	from urllib.parse import quote, unquote
+
+	def _unquote(str, as_is=False):
+		return unquote(str)
 except ImportError:
 	from urllib       import quote, unquote
+
+	def _unquote(str, as_is=False):
+		if not as_is:
+			str = str.decode('utf-8').encode('ascii')
+
+		return unquote(str).decode('utf-8')
+
+def _quote(str):
+	return quote(str.encode('utf-8'))
 
 
 class URLExploder(object):
@@ -42,9 +54,6 @@ class URLExploder(object):
 		return result
 
 	def _parse_url(self, url, as_is=False):
-		if not as_is:
-			url = url.encode('ascii')
-
 		fragment = ''
 		if '#' in url:
 			url_parts = url.split('#')
@@ -54,10 +63,7 @@ class URLExploder(object):
 
 		url_parts = url.split('?')
 		base = url_parts[0]
-		query_string = []
-
-		for part in xrange(1, len(url_parts)):
-			query_string.append(self._parse_query_string(url_parts[part], as_is))
+		query_string = [self._parse_query_string(url_parts[part], as_is) for part in range(1, len(url_parts))]
 
 		return base, query_string, fragment
 
@@ -66,14 +72,14 @@ class URLExploder(object):
 			query_string = [part for part in query_string.split('&')]
 
 			if not as_is:
-				query_string = [unquote(part).decode('utf-8') for part in query_string]
+				query_string = [_unquote(part, as_is) for part in query_string]
 				query_string.sort()
 
 			return query_string
 
 	def _mold_query_string_param(self, name, value, as_is=False):
 		if not as_is:
-			return (quote(name.encode('utf-8')), quote(value.encode('utf-8')))
+			return (_quote(name), _quote(value))
 		else:
 			return (name, value)
 
