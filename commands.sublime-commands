@@ -1,0 +1,15 @@
+[
+	{
+		"caption": "URL Expoder: explode",
+		"command": "explode_url"
+	}, {
+		"caption": "URL Expoder: explode (as is)",
+		"command": "explode_url_as_is"
+	}, {
+		"caption": "URL Expoder: collapse",
+		"command": "collapse_url"
+	}, {
+		"caption": "URL Expoder: collapse (as is)",
+		"command": "collapse_url_as_is"
+	}
+]

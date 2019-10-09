@@ -1,0 +1,3 @@
+[
+	{ "keys": ["ctrl+alt+shift+u"], "command": "explode_url" }
+]
