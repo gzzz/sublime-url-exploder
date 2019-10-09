@@ -14,7 +14,7 @@ https://example.com/slug/
 &two=2
 ?five=тест
 &four=4
-&#35;fragment
+#fragment
 ```
 
 Collapse:
@@ -26,7 +26,7 @@ https://example.com/slug/
 &two=2
 ?five=тест
 &four=4
-&#35;fragment
+#fragment
 ```
 →
 ```
@@ -46,7 +46,7 @@ https://example.com/slug/
 &three=4
 ?four=4
 &five=%D1%82%D0%B5%D1%81%D1%82
-&#35;fragment
+#fragment
 ```
 
 Collapse (as-is):
@@ -58,7 +58,7 @@ https://example.com/slug/
 &three=4
 ?four=4
 &five=%D1%82%D0%B5%D1%81%D1%82
-&#35;fragment
+#fragment
 ```
 →
 ```
