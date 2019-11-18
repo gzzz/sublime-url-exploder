@@ -6,10 +6,10 @@
 		"caption": "URL Expoder: explode (as is)",
 		"command": "explode_url_as_is"
 	}, {
-		"caption": "URL Expoder: collapse",
-		"command": "collapse_url"
+		"caption": "URL Expoder: implode",
+		"command": "implode_url"
 	}, {
-		"caption": "URL Expoder: collapse (as is)",
-		"command": "collapse_url_as_is"
+		"caption": "URL Expoder: implode (as is)",
+		"command": "implode_url_as_is"
 	}
 ]
