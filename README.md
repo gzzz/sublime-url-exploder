@@ -17,7 +17,7 @@ https://example.com/slug/
 #fragment
 ```
 
-Collapse:
+Implode:
 ```
 https://example.com/slug/
 ?one=1
@@ -49,7 +49,7 @@ https://example.com/slug/
 #fragment
 ```
 
-Collapse (as-is):
+Implode (as-is):
 ```
 https://example.com/slug/
 ?one=1
