@@ -3,19 +3,28 @@ import sublime, sublime_plugin, re
 try:
 	from urllib.parse import quote, unquote
 
-	def _unquote(str, as_is=False):
-		return unquote(str)
+	def _unquote(arg, as_is=False):
+		if arg is None:
+			return arg
+
+		return unquote(arg)
 except ImportError:
 	from urllib       import quote, unquote
 
-	def _unquote(str, as_is=False):
+	def _unquote(arg, as_is=False):
+		if arg is None:
+			return arg
+
 		if not as_is:
-			str = str.decode('utf-8').encode('ascii')
+			arg = arg.decode('utf-8').encode('ascii')
 
-		return unquote(str).decode('utf-8')
+		return unquote(arg).decode('utf-8')
 
-def _quote(str):
-	return quote(str.encode('utf-8'), safe='')
+def _quote(arg):
+	if arg is None:
+		return arg
+
+	return quote(arg.encode('utf-8'), safe='')
 
 
 class URLExploder(object):
@@ -78,7 +87,7 @@ class URLExploder(object):
 		result, query_string, fragment = self._parse_exploded_url(url, as_is=True)
 
 		for qs in query_string:
-			result += '?' + '&'.join(['%s=%s' % self._mold_query_string_param(name, value, as_is) for param in qs for (name, value) in [param.split('=', 1)]])
+			result += '?' + '&'.join(['='.join(filter(None, self._mold_query_string_param(name, value, as_is))) for param in qs for (name, value) in self._parse_query_string_param(param)])
 
 		if fragment:
 			result += '#' + fragment
@@ -156,6 +165,14 @@ class URLExploder(object):
 			return (_quote(name), _quote(value))
 		else:
 			return (name, value)
+
+	def _parse_query_string_param(self, param):
+		param = param.split('=', 1)
+
+		if len(param) == 1:
+			param.append(None)
+
+		return [param]
 
 
 class URLCommand(sublime_plugin.TextCommand):
