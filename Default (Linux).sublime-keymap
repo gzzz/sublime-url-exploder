@@ -1,4 +1,4 @@
 [
-	{ "keys": ["ctrl+alt+shift+e"], "command": "explode_url" }
+	{ "keys": ["ctrl+alt+shift+e"], "command": "explode_url" },
 	{ "keys": ["ctrl+alt+shift+i"], "command": "implode_url" }
 ]
