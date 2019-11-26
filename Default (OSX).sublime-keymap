@@ -1,5 +1,5 @@
 [
-	{ "keys": ["super+alt+shift+e"],      "command": "explode_url" },
+	{ "keys": ["super+alt+shift+x"],      "command": "explode_url" },
 	{ "keys": ["super+alt+shift+i"],      "command": "implode_url" },
 	{ "keys": ["super+ctrl+alt+shift+e"], "command": "explode_url_as_is" },
 	{ "keys": ["super+ctrl+alt+shift+i"], "command": "implode_url_as_is" }
