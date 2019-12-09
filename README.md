@@ -1,4 +1,4 @@
-URLExploder – simple plugin, explodes URL into multiline block of base-part and sorted-decoded query string params or collapses exploded URL back into flat form.
+URLExploder – simple plugin, explodes URL into multiline block of base-part and sorted-decoded query string params or implodes exploded URL back into flat form.
 
 # Usage
 ## Explode
