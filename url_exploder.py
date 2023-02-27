@@ -20,11 +20,14 @@ except ImportError:
 
 		return unquote(arg).decode('utf-8')
 
-def _quote(arg):
+def _quote(arg, as_is=False):
 	if arg is None:
 		return arg
 
-	return quote(arg.encode('utf-8'), safe='')
+	if not as_is:
+		arg = arg.encode('utf-8')
+
+	return quote(arg, safe='')
 
 
 class URLExploder(object):
@@ -79,6 +82,9 @@ class URLExploder(object):
 			result += '\n?' + '\n&'.join(qs)
 
 		if fragment:
+			if not as_is:
+				fragment = _unquote(fragment, as_is)
+
 			result += '\n#' + fragment
 
 		return result
@@ -90,6 +96,9 @@ class URLExploder(object):
 			result += '?' + '&'.join(['='.join(filter(None, self._mold_query_string_param(name, value, as_is))) for param in qs for (name, value) in self._parse_query_string_param(param)])
 
 		if fragment:
+			if not as_is:
+				fragment = _quote(fragment, as_is)
+
 			result += '#' + fragment
 
 		return result
